@@ -1,0 +1,2 @@
+class Nonda < ApplicationRecord
+end

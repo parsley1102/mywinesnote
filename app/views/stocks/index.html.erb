@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Stocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wine name</th>
+      <th>Producer</th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>General notes</th>
+      <th>Vintage</th>
+      <th>Price</th>
+      <th>Amount</th>
+      <th>Bought from</th>
+      <th>Bought on</th>
+      <th>Cellar</th>
+      <th>Stock notes</th>
+      <th>Status</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.wine_name %></td>
+        <td><%= stock.producer %></td>
+        <td><%= stock.country %></td>
+        <td><%= stock.region %></td>
+        <td><%= stock.general_notes %></td>
+        <td><%= stock.vintage %></td>
+        <td><%= stock.price %></td>
+        <td><%= stock.amount %></td>
+        <td><%= stock.bought_from %></td>
+        <td><%= stock.bought_on %></td>
+        <td><%= stock.cellar_id %></td>
+        <td><%= stock.stock_notes %></td>
+        <td><%= stock.status %></td>
+        <td><%= link_to 'Show', stock %></td>
+        <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
+        <td><%= link_to 'Nonda', nonda_stock_path(stock) %></td>
+        <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Stock', new_stock_path %>

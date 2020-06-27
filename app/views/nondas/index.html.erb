@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Nondas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wine name</th>
+      <th>Producer</th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>General notes</th>
+      <th>Vintage</th>
+      <th>Price</th>
+      <th>Tasted on</th>
+      <th>Tasted pts</th>
+      <th>Tasting notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nondas.each do |nonda| %>
+      <tr>
+        <td><%= nonda.wine_name %></td>
+        <td><%= nonda.producer %></td>
+        <td><%= nonda.country %></td>
+        <td><%= nonda.region %></td>
+        <td><%= nonda.general_notes %></td>
+        <td><%= nonda.vintage %></td>
+        <td><%= nonda.price %></td>
+        <td><%= nonda.tasted_on %></td>
+        <td><%= nonda.tasted_pts %></td>
+        <td><%= nonda.tasting_notes %></td>
+        <td><%= link_to 'Show', nonda %></td>
+        <td><%= link_to 'Edit', edit_nonda_path(nonda) %></td>
+        <td><%= link_to 'Destroy', nonda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nonda', new_nonda_path %>

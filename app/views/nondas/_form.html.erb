@@ -1,0 +1,67 @@
+<%= form_with(model: nonda, local: true) do |form| %>
+  <% if nonda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nonda.errors.count, "error") %> prohibited this nonda from being saved:</h2>
+
+      <ul>
+      <% nonda.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :wine_name %>
+    <%= form.text_field :wine_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :producer %>
+    <%= form.text_field :producer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region %>
+    <%= form.text_field :region %>
+  </div>
+
+  <div class="field">
+    <%= form.label :general_notes %>
+    <%= form.text_area :general_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vintage %>
+    <%= form.number_field :vintage, min: 1930 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, min: 1000, step: 100 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tasted_on %>
+    <%= form.date_select :tasted_on %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tasted_pts %>
+    <%= form.number_field :tasted_pts, min: 0, max: 20 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tasting_notes %>
+    <%= form.text_area :tasting_notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

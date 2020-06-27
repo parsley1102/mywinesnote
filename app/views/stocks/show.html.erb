@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wine name:</strong>
+  <%= @stock.wine_name %>
+</p>
+
+<p>
+  <strong>Producer:</strong>
+  <%= @stock.producer %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @stock.country %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @stock.region %>
+</p>
+
+<p>
+  <strong>General notes:</strong>
+  <%= @stock.general_notes %>
+</p>
+
+<p>
+  <strong>Vintage:</strong>
+  <%= @stock.vintage %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @stock.price %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @stock.amount %>
+</p>
+
+<p>
+  <strong>Bought from:</strong>
+  <%= @stock.bought_from %>
+</p>
+
+<p>
+  <strong>Bought on:</strong>
+  <%= @stock.bought_on %>
+</p>
+
+<p>
+  <strong>Cellar:</strong>
+  <%= @stock.cellar_id %>
+</p>
+
+<p>
+  <strong>Stock notes:</strong>
+  <%= @stock.stock_notes %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @stock.status %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>

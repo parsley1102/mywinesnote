@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wine name:</strong>
+  <%= @wish.wine_name %>
+</p>
+
+<p>
+  <strong>Producer:</strong>
+  <%= @wish.producer %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @wish.country %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @wish.region %>
+</p>
+
+<p>
+  <strong>General notes:</strong>
+  <%= @wish.general_notes %>
+</p>
+
+<p>
+  <strong>Min price:</strong>
+  <%= @wish.min_price %>
+</p>
+
+<p>
+  <strong>Max price:</strong>
+  <%= @wish.max_price %>
+</p>
+
+<p>
+  <strong>Wishes note:</strong>
+  <%= @wish.wishes_note %>
+</p>
+
+<%= link_to 'Edit', edit_wish_path(@wish) %> |
+<%= link_to 'Back', wishes_path %>

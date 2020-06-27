@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wishes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wine name</th>
+      <th>Producer</th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>General notes</th>
+      <th>Min price</th>
+      <th>Max price</th>
+      <th>Wishes note</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wishes.each do |wish| %>
+      <tr>
+        <td><%= wish.wine_name %></td>
+        <td><%= wish.producer %></td>
+        <td><%= wish.country %></td>
+        <td><%= wish.region %></td>
+        <td><%= wish.general_notes %></td>
+        <td><%= wish.min_price %></td>
+        <td><%= wish.max_price %></td>
+        <td><%= wish.wishes_note %></td>
+        <td><%= link_to 'Show', wish %></td>
+        <td><%= link_to 'Edit', edit_wish_path(wish) %></td>
+        <td><%= link_to 'Stock', stock_wish_path(wish) %></td>
+        <td><%= link_to 'Nonda', nonda_wish_path(wish) %></td>
+        <td><%= link_to 'Delete', wish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wish', new_wish_path %>

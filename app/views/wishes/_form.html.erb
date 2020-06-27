@@ -1,0 +1,57 @@
+<%= form_with(model: wish, local: true) do |form| %>
+  <% if wish.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wish.errors.count, "error") %> prohibited this wish from being saved:</h2>
+
+      <ul>
+      <% wish.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :wine_name %>
+    <%= form.text_field :wine_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :producer %>
+    <%= form.text_field :producer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region %>
+    <%= form.text_field :region %>
+  </div>
+
+  <div class="field">
+    <%= form.label :general_notes %>
+    <%= form.text_area :general_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_price %>
+    <%= form.number_field :min_price , min: 1000, max: 100000, step: 500%>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_price %>
+    <%= form.number_field :max_price , min: 1500, step: 100%>
+  </div>
+
+  <div class="field">
+    <%= form.label :wishes_note %>
+    <%= form.text_area :wishes_note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
