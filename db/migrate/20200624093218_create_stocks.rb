@@ -1,6 +1,7 @@
 class CreateStocks < ActiveRecord::Migration[5.2]
   def change
     create_table :stocks do |t|
+      t.references :user, foreign_key: true
       t.string :wine_name
       t.string :producer
       t.string :country

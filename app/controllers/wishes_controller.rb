@@ -4,7 +4,7 @@ class WishesController < ApplicationController
   # GET /wishes
   # GET /wishes.json
   def index
-    @wishes = Wish.all
+    @wishes = Wish.where(del_flg: 0).order(id: :desc)
   end
 
   # GET /wishes/1
