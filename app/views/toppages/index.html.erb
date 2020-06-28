@@ -1,5 +1,19 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<div class="row">
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="<%= wish_path(@wish) %>" class="nav-link <%= 'active' if current_page?(wish_path(id: current_user)) %>">Wishes  <span class="badge badge-secondary"><%= @count_wishes %></span></a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Stocks</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Nondas</a></li>
+    </ul>
+    <%= render 'wishes/wishes', wishes: @wishes %>
+  </div>
+</div>
+    
+
+
+
+
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

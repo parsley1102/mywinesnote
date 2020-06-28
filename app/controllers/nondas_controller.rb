@@ -1,5 +1,6 @@
 class NondasController < ApplicationController
   before_action :set_nonda, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:destroy]
 
   # GET /nondas
   # GET /nondas.json
@@ -40,7 +41,7 @@ class NondasController < ApplicationController
   # POST /nondas
   # POST /nondas.json
   def create
-    @nonda = Nonda.new(nonda_params)
+    @nonda = current_user.nondas.new(nonda_params)
 
     respond_to do |format|
       if @nonda.save
@@ -86,5 +87,12 @@ class NondasController < ApplicationController
     # Only allow a list of trusted parameters through.
     def nonda_params
       params.require(:nonda).permit(:wine_name, :producer, :country, :region, :general_notes, :vintage, :price, :tasted_on, :tasted_pts, :tasting_notes)
+    end
+    
+    def correct_user
+      @nonda = current_user.nondas.find_by(id: params[:id])
+      unless @nonda
+      redirect_to root_url
+      end
     end
 end

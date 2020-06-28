@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy, :nonda]
-
+  before_action :correct_user, only: [:destroy]
   # GET /stocks
   # GET /stocks.json
   def index
@@ -36,14 +36,10 @@ class StocksController < ApplicationController
     redirect_to  nonda_from_stock_path(@stock) # nondas_controllerの new_from_stockアクションに遷移
   end
   
-  
-  
-  
-  
   # POST /stocks
   # POST /stocks.json
   def create
-    @stock = Stock.new(stock_params)
+    @stock = current_user.stocks.new(stock_params)
 
     respond_to do |format|
       if @stock.save
@@ -89,5 +85,12 @@ class StocksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def stock_params
       params.require(:stock).permit(:wine_name, :producer, :country, :region, :general_notes, :vintage, :price, :amount, :bought_from, :bought_on, :cellar_id, :stock_notes, :status)
+    end
+    
+    def correct_user
+      @stock = current_user.stocks.find_by(id: params[:id])
+      unless @stock
+      redirect_to root_url
+      end
     end
 end

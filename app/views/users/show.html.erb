@@ -10,10 +10,12 @@
     </div>
   </aside>
   <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="/wishes" class="nav-link">Wishes</a></li>
-      <li class="nav-item"><a href="/stocks" class="nav-link">Stocks</a></li>
-      <li class="nav-item"><a href="/nondas" class="nav-link">Nondas</a></li>
+    
+    <ul>
+      <li class="nav-item"><a href="/wishes">Wishes <span class="badge badge-secondary"><%= @count_wishes %></span></a></li>
+      <li class="nav-item"><a href="/stocks">Stocks <span class="badge badge-secondary"><%= @count_stocks %></span></a></li>
+      <li class="nav-item"><a href="/nondas">Nondas <span class="badge badge-secondary"><%= @count_nondas %></span></a></li>
     </ul>
+
   </div>
 </div>

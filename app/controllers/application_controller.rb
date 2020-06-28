@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+  def counts(user)
+    @count_stocks = user.stocks.count
+    @count_wishes = user.wishes.count
+    @count_nondas = user.nondas.count
+  end
 end

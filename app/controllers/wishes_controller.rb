@@ -1,6 +1,6 @@
 class WishesController < ApplicationController
   before_action :set_wish, only: [:show, :edit, :update, :destroy, :createstockfromwish, :stock, :nonda]
-
+  before_action :correct_user, only: [:destroy]
   # GET /wishes
   # GET /wishes.json
   def index
@@ -10,6 +10,7 @@ class WishesController < ApplicationController
   # GET /wishes/1
   # GET /wishes/1.json
   def show
+
   end
 
   # GET /wishes/new
@@ -26,7 +27,7 @@ class WishesController < ApplicationController
   # POST /wishes
   # POST /wishes.json
   def create
-    @wish = Wish.new(wish_params)
+    @wish = current_user.wishes.new(wish_params)
 
     respond_to do |format|
       if @wish.save
@@ -87,8 +88,11 @@ class WishesController < ApplicationController
       params.require(:wish).permit(:wine_name, :producer, :country, :region, :general_notes, :min_price, :max_price, :wishes_note)
     end
     
-#    def stockfromwish_params
-#      params.require(:wish).permit(:wine_name, :producer, :country, :region, :general_notes)
-#    end
-    
+    def correct_user
+      @wish = current_user.wishes.find_by(id: params[:id])
+      unless @wish
+      redirect_to root_url
+      end
+    end
+
 end

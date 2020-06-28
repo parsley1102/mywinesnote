@@ -1,16 +1,19 @@
 <ul class="list-unstyled">
-  <% microposts.each do |micropost| %>
+  <% stocks.each do |stock| %>
     <li class="media mb-3">
-      <img class="mr-2 rounded" src="<%= gravatar_url(micropost.user, { size: 50 }) %>" alt="">
+      <img class="mr-2 rounded" src="<%= gravatar_url(stock.user, { size: 50 }) %>" alt="">
       <div class="media-body">
         <div>
-          <%= link_to micropost.user.name, user_path(micropost.user) %> <span class="text-muted">posted at <%= micropost.created_at %></span>
+          <%= link_to stock.user.name, user_path(stock.user) %> <span class="text-muted">posted at <%= stock.created_at %></span>
         </div>
+        
         <div>
-          <p><%= micropost.content %></p>
+          <p>New Stock</p>
+          <p><%= stock.wine_name %></p>
+          
         </div>
       </div>
     </li>
   <% end %>
-  <%= paginate microposts %>
+  <%= paginate stocks %>
 </ul>

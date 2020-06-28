@@ -1,0 +1,19 @@
+<ul class="list-unstyled">
+  <% wishes.each do |wish| %>
+    <li class="media mb-3">
+      <img class="mr-2 rounded" src="<%= gravatar_url(wish.user, { size: 50 }) %>" alt="">
+      <div class="media-body">
+        <div>
+          <%= link_to wish.user.name, user_path(wish.user) %> <span class="text-muted">posted at <%= wish.created_at %></span>
+        </div>
+        
+        <div>
+          <p>New Wish</p>
+          <p><%= wish.wine_name %></p>
+          
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate wishes %>
+</ul>

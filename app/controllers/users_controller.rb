@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @stocks = @user.stocks.order(id: :desc).page(params[:page])
+    @wishes = @user.wishes.order(id: :desc).page(params[:page])
+    @nondas = @user.nondas.order(id: :desc).page(params[:page])
+    counts(@user)
   end
 
   def new

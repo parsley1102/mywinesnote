@@ -1,0 +1,19 @@
+<ul class="list-unstyled">
+  <% nondas.each do |nonda| %>
+    <li class="media mb-3">
+      <img class="mr-2 rounded" src="<%= gravatar_url(nonda.user, { size: 50 }) %>" alt="">
+      <div class="media-body">
+        <div>
+          <%= link_to nonda.user.name, user_path(nonda.user) %> <span class="text-muted">posted at <%= nonda.created_at %></span>
+        </div>
+        
+        <div>
+          <p>New Nondas</p>
+          <p><%= nonda.wine_name %></p>
+          
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate nondas %>
+</ul>
