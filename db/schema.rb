@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_082820) do
+ActiveRecord::Schema.define(version: 2020_06_27_073522) do
 
   create_table "nondas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "wine_name"
     t.string "producer"
     t.string "country"
@@ -25,9 +26,11 @@ ActiveRecord::Schema.define(version: 2020_06_27_082820) do
     t.text "tasting_notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_nondas_on_user_id"
   end
 
   create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "wine_name"
     t.string "producer"
     t.string "country"
@@ -43,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_082820) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_082820) do
   end
 
   create_table "wishes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "wine_name"
     t.string "producer"
     t.string "country"
@@ -65,6 +70,10 @@ ActiveRecord::Schema.define(version: 2020_06_27_082820) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "del_flg"
+    t.index ["user_id"], name: "index_wishes_on_user_id"
   end
 
+  add_foreign_key "nondas", "users"
+  add_foreign_key "stocks", "users"
+  add_foreign_key "wishes", "users"
 end
