@@ -17,7 +17,7 @@
 
 <h1>Nondas</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Wine name</th>
@@ -30,7 +30,7 @@
       <th>Tasted on</th>
       <th>Tasted pts</th>
       <th>Tasting notes</th>
-      <th colspan="3"></th>
+      <th colspan="13"></th>
     </tr>
   </thead>
 
@@ -49,7 +49,7 @@
         <td><%= nonda.tasting_notes %></td>
         <td><%= link_to 'Show', nonda %></td>
         <td><%= link_to 'Edit', edit_nonda_path(nonda) %></td>
-        <td><%= link_to 'Destroy', nonda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', nonda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

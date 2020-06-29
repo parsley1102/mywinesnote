@@ -18,7 +18,7 @@
 
 <h1>Stocks</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Wine name</th>
@@ -34,7 +34,7 @@
       <th>Cellar</th>
       <th>Stock notes</th>
       <th>Status</th>
-      <th colspan="4"></th>
+      <th colspan="13"></th>
     </tr>
   </thead>
 
@@ -57,7 +57,7 @@
         <td><%= link_to 'Show', stock %></td>
         <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
         <td><%= link_to 'Nonda', nonda_stock_path(stock) %></td>
-        <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
