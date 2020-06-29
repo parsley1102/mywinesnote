@@ -5,7 +5,7 @@ class WishesController < ApplicationController
   # GET /wishes
   # GET /wishes.json
   def index
-    @wishes = current_user.wishes.order(id: :desc).page(params[:page])
+    @wishes = current_user.wishes.where(del_flg: nil).order(id: :desc).page(params[:page])
   end
 
   # GET /wishes/1

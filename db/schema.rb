@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_073522) do
+ActiveRecord::Schema.define(version: 2020_06_29_075522) do
 
   create_table "nondas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_073522) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "del_flg"
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 

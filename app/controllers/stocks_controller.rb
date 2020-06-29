@@ -4,7 +4,7 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = current_user.stocks.order(id: :desc).page(params[:page])
+    @stocks = current_user.stocks.where(del_flg: nil).order(id: :desc).page(params[:page])
   end
 
   # GET /stocks/1
@@ -31,8 +31,8 @@ class StocksController < ApplicationController
 
   # Nondaボタン押下時
   def nonda
-  #  @wish.del_flg = 1 # デリートフラグを１にして論理削除
-  #  @wish.save! # 論削したことを保存
+    @stock.del_flg = 1 # デリートフラグを１にして論理削除
+    @stock.save! # 論削したことを保存
     redirect_to  nonda_from_stock_path(@stock) # nondas_controllerの new_from_stockアクションに遷移
   end
   
