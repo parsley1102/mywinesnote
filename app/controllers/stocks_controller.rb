@@ -1,10 +1,10 @@
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy, :nonda]
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :edit, :update, :show]
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = Stock.all
+    @stocks = current_user.stocks.order(id: :desc).page(params[:page])
   end
 
   # GET /stocks/1
@@ -38,31 +38,28 @@ class StocksController < ApplicationController
   
   # POST /stocks
   # POST /stocks.json
+  
   def create
     @stock = current_user.stocks.new(stock_params)
-
-    respond_to do |format|
       if @stock.save
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
-        format.json { render :show, status: :created, location: @stock }
+      flash[:success] = 'Stock was successfully created'
+      redirect_to @stock
       else
-        format.html { render :new }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
+        flash.now[:danger] = 'Stock was not created'
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /stocks/1
   # PATCH/PUT /stocks/1.json
   def update
-    respond_to do |format|
-      if @stock.update(stock_params)
-        format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
-        format.json { render :show, status: :ok, location: @stock }
-      else
-        format.html { render :edit }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
+
+    if @stock.update(stock_params)
+    flash[:success] = 'Stock was successfully updated'
+    redirect_to @stock
+    else
+      flash.now[:danger] = 'Stock was not updated'
+      render :edit
     end
   end
 
@@ -93,4 +90,6 @@ class StocksController < ApplicationController
       redirect_to root_url
       end
     end
+    
+
 end

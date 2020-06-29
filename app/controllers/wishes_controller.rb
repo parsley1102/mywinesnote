@@ -1,10 +1,11 @@
 class WishesController < ApplicationController
-  before_action :set_wish, only: [:show, :edit, :update, :destroy, :createstockfromwish, :stock, :nonda]
-  before_action :correct_user, only: [:destroy]
+  before_action :set_wish, only: [:show, :edit, :update, :destroy, :stock, :nonda]
+  before_action :correct_user, only: [:destroy, :edit, :update, :show]
+  
   # GET /wishes
   # GET /wishes.json
   def index
-    @wishes = Wish.where(del_flg: 0).order(id: :desc)
+    @wishes = current_user.wishes.order(id: :desc).page(params[:page])
   end
 
   # GET /wishes/1
@@ -28,39 +29,32 @@ class WishesController < ApplicationController
   # POST /wishes.json
   def create
     @wish = current_user.wishes.new(wish_params)
-
-    respond_to do |format|
       if @wish.save
-        format.html { redirect_to @wish, notice: 'Wish was successfully created.' }
-        format.json { render :show, status: :created, location: @wish }
+      flash[:success] = 'Wish was successfully created'
+      redirect_to @wish
       else
-        format.html { render :new }
-        format.json { render json: @wish.errors, status: :unprocessable_entity }
+        flash.now[:danger] = 'Wish was not created'
+        render :new
       end
-    end
   end
-
   # PATCH/PUT /wishes/1
   # PATCH/PUT /wishes/1.json
   def update
-    respond_to do |format|
-      if @wish.update(wish_params)
-        format.html { redirect_to @wish, notice: 'Wish was successfully updated.' }
-        format.json { render :show, status: :ok, location: @wish }
-      else
-        format.html { render :edit }
-        format.json { render json: @wish.errors, status: :unprocessable_entity }
-      end
+
+    if @wish.update(wish_params)
+    flash[:success] = 'Wish was successfully updated'
+    redirect_to @wish
+    else
+      flash.now[:danger] = 'Wish was not updated'
+      render :edit
     end
   end
   # DELETE /wishes/1
   # DELETE /wishes/1.json
   def destroy
     @wish.destroy
-    respond_to do |format|
-      format.html { redirect_to wishes_url, notice: 'Wish was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = 'Wish was successfully deleted'
+      redirect_to @wish
   end
   
   # Stockボタン押下時

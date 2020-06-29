@@ -1,11 +1,11 @@
 class NondasController < ApplicationController
   before_action :set_nonda, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :edit, :update, :show]
 
   # GET /nondas
   # GET /nondas.json
   def index
-    @nondas = Nonda.all
+    @nondas = current_user.nondas.order(id: :desc).page(params[:page])
   end
 
   # GET /nondas/1
@@ -42,29 +42,25 @@ class NondasController < ApplicationController
   # POST /nondas.json
   def create
     @nonda = current_user.nondas.new(nonda_params)
-
-    respond_to do |format|
       if @nonda.save
-        format.html { redirect_to @nonda, notice: 'Nonda was successfully created.' }
-        format.json { render :show, status: :created, location: @nonda }
+      flash[:success] = 'Nonda was successfully created'
+      redirect_to @nonda
       else
-        format.html { render :new }
-        format.json { render json: @nonda.errors, status: :unprocessable_entity }
+        flash.now[:danger] = 'Nonda was not created'
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /nondas/1
   # PATCH/PUT /nondas/1.json
   def update
-    respond_to do |format|
-      if @nonda.update(nonda_params)
-        format.html { redirect_to @nonda, notice: 'Nonda was successfully updated.' }
-        format.json { render :show, status: :ok, location: @nonda }
-      else
-        format.html { render :edit }
-        format.json { render json: @nonda.errors, status: :unprocessable_entity }
-      end
+
+    if @nonda.update(nonda_params)
+    flash[:success] = 'Nonda was successfully updated'
+    redirect_to @nonda
+    else
+      flash.now[:danger] = 'Nonda was not updated'
+      render :edit
     end
   end
 
