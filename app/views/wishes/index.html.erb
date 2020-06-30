@@ -16,8 +16,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Wishes</h1>
-
-<table class="table">
+<br>
+<%= link_to 'New Wish', new_wish_path, class: "btn btn-primary" %>
+<br>
+<br>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Wine name</th>
@@ -53,9 +56,12 @@
   </tbody>
 </table>
 
+
 <br>
 
-<%= link_to 'New Wish', new_wish_path %>
+  <div>
+    <%= paginate @wishes %>
+  </div>
 
 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->

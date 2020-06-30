@@ -1,4 +1,21 @@
-<%= form_with(model: wish, local: true) do |form| %>
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+        <title>My Wines Note</title>
+    </head>
+    
+<body>
+  
+  
+  
+  <%= form_with(model: wish, local: true) do |form| %>
   <% if wish.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(wish.errors.count, "error") %> prohibited this wish from being saved:</h2>
@@ -11,47 +28,79 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :wine_name %>
-    <%= form.text_field :wine_name %>
-  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label">
+      <%= form.label :wine_name %>
+    </label>
+    <div class="col-10 form-control">
+      <%= form.text_field :wine_name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :producer %>
-    <%= form.text_field :producer %>
-  </div>
+    <label class="col-2 col-form-label">
+      <%= form.label :producer %>
+    </label>
+    <div class="col-10">
+      <%= form.text_field :producer %>
+    </div>
 
-  <div class="field">
+    <label class="col-2 col-form-label">
     <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
+    </label>
+    <div class="col-10">
+      <%= form.text_field :country %>
+    </div>
 
-  <div class="field">
+    <label class="col-2 col-form-label">
     <%= form.label :region %>
-    <%= form.text_field :region %>
-  </div>
+    </label>
+    <div class="col-10">
+      <%= form.text_field :region %>
+    </div>
 
-  <div class="field">
+    <label class="col-2 col-form-label">
     <%= form.label :general_notes %>
-    <%= form.text_area :general_notes %>
-  </div>
+    </label>
+    <div class="col-10">
+      <%= form.text_area :general_notes %>
+    </div>
 
-  <div class="field">
+    <label class="col-2 col-form-label">
     <%= form.label :min_price %>
-    <%= form.number_field :min_price , min: 1000, max: 100000, step: 500%>
-  </div>
+    </label>
+    <div class="col-10">
+      <%= form.number_field :min_price , min: 1000, max: 100000, step: 500%>
+    </div>      
 
-  <div class="field">
+    <label class="col-2 col-form-label">
     <%= form.label :max_price %>
-    <%= form.number_field :max_price , min: 1500, step: 100%>
-  </div>
+    </label>
+    <div class="col-10">
+      <%= form.number_field :max_price , min: 1500, step: 100%>
+    </div>
 
-  <div class="field">
+    <label class="col-2 col-form-label">
     <%= form.label :wishes_note %>
-    <%= form.text_area :wishes_note %>
+    </label>
+    <div class="col-10">
+      <%= form.text_area :wishes_note %>
+    </div>
   </div>
 
   <div class="actions">
+    <div class="offset-2 col-10">
     <%= form.submit %>
+    </div>
   </div>
+
 <% end %>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+
+</body>
+</html>

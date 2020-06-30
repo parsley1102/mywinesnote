@@ -16,7 +16,10 @@
   <p id="notice"><%= notice %></p>
 
 <h1>Nondas</h1>
-
+<br>
+<%= link_to 'New Nonda', new_nonda_path, class: "btn btn-primary" %>
+<br>
+<br>
 <table class="table">
   <thead>
     <tr>
@@ -56,8 +59,9 @@
 </table>
 
 <br>
-
-<%= link_to 'New Nonda', new_nonda_path %>
+  <div>
+    <%= paginate @nondas %>
+  </div>
 
 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->

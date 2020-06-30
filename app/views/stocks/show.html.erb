@@ -81,8 +81,11 @@
   <%= @stock.status %>
 </p>
 
-<%= link_to 'Edit', edit_stock_path(@stock) %> |
-<%= link_to 'Back', stocks_path %>
+
+<%= link_to 'Edit', edit_stock_path(@stock), class: "btn btn-outline-primary col-4" %> 
+<br>
+<br>
+<%= link_to 'Back', stocks_path, class: "btn btn-primary col-4" %>
 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

@@ -65,9 +65,11 @@
   <%= @nonda.tasting_notes %>
 </p>
 
-<%= link_to 'Edit', edit_nonda_path(@nonda) %> |
-<%= link_to 'Back', nondas_path %>
 
+<%= link_to 'Edit', edit_nonda_path(@nonda), class: "btn btn-outline-primary col-4" %> 
+<br>
+<br>
+<%= link_to 'Back', nondas_path, class: "btn btn-primary col-4" %>
 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

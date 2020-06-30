@@ -55,8 +55,10 @@
   <%= @wish.wishes_note %>
 </p>
 
-<%= link_to 'Edit', edit_wish_path(@wish) %> |
-<%= link_to 'Back', wishes_path %>
+<%= link_to 'Edit', edit_wish_path(@wish), class: "btn btn-outline-primary col-4" %> 
+<br>
+<br>
+<%= link_to 'Back', wishes_path, class: "btn btn-primary col-4" %>
 
 <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->
