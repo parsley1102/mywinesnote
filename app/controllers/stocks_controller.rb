@@ -4,7 +4,7 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = current_user.stocks.where(del_flg: nil).order(id: :desc).page(params[:page])
+    @stocks = current_user.stocks.where(amount: 1..Float::INFINITY).order(id: :desc).page(params[:page])
   end
 
   # GET /stocks/1
@@ -20,8 +20,11 @@ class StocksController < ApplicationController
   # wishから作成する場合
   def new_from_wish
     wish = Wish.find(params[:id]) # wish作成
+    
     # wishのうちstockとの共通部分をstockオブジェクトに入れてstockオブジェクトを生成
     @stock = Stock.new(wish.slice(:wine_name, :producer, :country, :region, :general_notes))
+ #   @wish = Wish.destroy(params[:id])
+    
     render action: :new # newのビューへ遷移
   end
 
@@ -31,8 +34,6 @@ class StocksController < ApplicationController
 
   # Nondaボタン押下時
   def nonda
-    @stock.del_flg = 1 # デリートフラグを１にして論理削除
-    @stock.save! # 論削したことを保存
     redirect_to  nonda_from_stock_path(@stock) # nondas_controllerの new_from_stockアクションに遷移
   end
   

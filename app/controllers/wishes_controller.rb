@@ -5,7 +5,7 @@ class WishesController < ApplicationController
   # GET /wishes
   # GET /wishes.json
   def index
-    @wishes = current_user.wishes.where(del_flg: nil).order(id: :desc).page(params[:page])
+    @wishes = current_user.wishes.order(id: :desc).page(params[:page])
   end
 
   # GET /wishes/1
@@ -59,15 +59,11 @@ class WishesController < ApplicationController
   
   # Stockボタン押下時
   def stock
-    @wish.del_flg = 1 # デリートフラグを１にして論理削除
-    @wish.save! # 論削したことを保存
     redirect_to  stock_from_wish_path(@wish) # stocks_controllerの new_from_wishアクションに遷移
   end
   
   # Nondaボタン押下時
   def nonda
-    @wish.del_flg = 1 # デリートフラグを１にして論理削除
-    @wish.save! # 論削したことを保存
     redirect_to  nonda_from_wish_path(@wish) # nondas_controllerの new_from_wishアクションに遷移
   end
   

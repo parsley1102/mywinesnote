@@ -18,19 +18,27 @@ class NondasController < ApplicationController
     @nonda = Nonda.new
   end
 
+
+
+
   # wishから作成する場合
   def new_from_wish
     wish = Wish.find(params[:id]) # wish作成
     # wishのうちnondaとの共通部分をnondaオブジェクトに入れてnondaオブジェクトを生成
     @nonda = Nonda.new(wish.slice(:wine_name, :producer, :country, :region, :general_notes))
+    @wish = Wish.destroy(params[:id])
     render action: :new # newのビューへ遷移
   end
 
   # stockから作成する場合
   def new_from_stock
+
     stock = Stock.find(params[:id]) # stock作成
     # stockのうちnondaとの共通部分をnondaオブジェクトに入れてnondaオブジェクトを生成
-    @nonda = Nonda.new(stock.slice(:wine_name, :producer, :country, :region, :general_notes))
+    @nonda = Nonda.new(stock.slice(:id, :wine_name, :producer, :country, :region, :general_notes))
+
+      
+      
     render action: :new # newのビューへ遷移
   end
 
@@ -41,6 +49,9 @@ class NondasController < ApplicationController
   # POST /nondas
   # POST /nondas.json
   def create
+
+  #  stock = Stock.find(params[:id]) # stock作成
+  
     @nonda = current_user.nondas.new(nonda_params)
       if @nonda.save
       flash[:success] = 'Nonda was successfully created'
@@ -49,8 +60,19 @@ class NondasController < ApplicationController
         flash.now[:danger] = 'Nonda was not created'
         render :new
       end
+      
+          
+  #  @stock = Stock.find(params[:id])
+  #    if @stock.present?
+  #      if @stock.amount > 1
+  #        @stock.amount = @stock.amount -1
+  #        @stock.save!
+  #      else
+  #        @stock.del_flg = 1 # デリートフラグを１にして論理削除
+  #        @stock.save! # 論削したことを保存
+  #      end
+  #    end
   end
-
   # PATCH/PUT /nondas/1
   # PATCH/PUT /nondas/1.json
   def update
@@ -82,7 +104,7 @@ class NondasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def nonda_params
-      params.require(:nonda).permit(:wine_name, :producer, :country, :region, :general_notes, :vintage, :price, :tasted_on, :tasted_pts, :tasting_notes)
+      params.require(:nonda).permit(:stockid, :wine_name, :producer, :country, :region, :general_notes, :vintage, :price, :tasted_on, :tasted_pts, :tasting_notes)
     end
     
     def correct_user

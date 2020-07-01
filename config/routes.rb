@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'sessions/create'
   get 'sessions/destroy'
   get 'users/index'
-  get 'users/show'
+  # get 'users/show'\
   get 'users/new'
   get 'users/create'
   root to: "toppages#index"
@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   # stockでnondaボタン押下時の遷移設定　###
   get 'stocks/:id/nonda', to: 'stocks#nonda', as: 'nonda_stock'
   get 'nondas/:id/new_from_stock', to: 'nondas#new_from_stock', as: 'nonda_from_stock'
+  
 end
