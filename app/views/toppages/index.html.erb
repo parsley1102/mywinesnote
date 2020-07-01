@@ -14,19 +14,13 @@
 <body>
   
 <% if logged_in? %>
-<div class="row">
-  <div class="col-sm-8">
-    <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">Wishes<span class="badge badge-secondary"></span></a><%= render 'wishes/wishes', wishes: @wishes %><%= @count_wishes %></li>
-      <li class="nav-item"><a href="#" class="nav-link">Stocks</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Nondas</a></li>
-    </ul>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"><%= link_to 'Wishes', wishes_path, class: "btn btn-primary" %></div>
+    <div class="col-sm-4"><%= link_to 'Stocks', stocks_path, class: "btn btn-primary" %></div>
+    <div class="col-sm-4"><%= link_to 'Nondas', nondas_path, class: "btn btn-primary" %></div>
   </div>
 </div>
-    
-
-
 
 
 <% else %>
